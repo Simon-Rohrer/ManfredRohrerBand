@@ -424,30 +424,3 @@ if (bookingForm) {
         }, 1500);
     });
 }
-
-// Member Slider
-function prevMemberSlide(btn) {
-    const container = btn.parentElement;
-    const images = container.querySelectorAll('img');
-    let activeIndex = Array.from(images).findIndex(img => img.classList.contains('active'));
-
-    images[activeIndex].classList.remove('active');
-
-    let newIndex = activeIndex - 1;
-    if (newIndex < 0) newIndex = images.length - 1;
-
-    images[newIndex].classList.add('active');
-}
-
-function nextMemberSlide(btn) {
-    const container = btn.parentElement;
-    const images = container.querySelectorAll('img');
-    let activeIndex = Array.from(images).findIndex(img => img.classList.contains('active'));
-
-    images[activeIndex].classList.remove('active');
-
-    let newIndex = activeIndex + 1;
-    if (newIndex >= images.length) newIndex = 0;
-
-    images[newIndex].classList.add('active');
-}
