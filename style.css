@@ -338,39 +338,108 @@ img {
 
 .members-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 30px;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 40px;
+}
+
+@media (max-width: 992px) {
+    .members-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 600px) {
+    .members-grid {
+        grid-template-columns: 1fr;
+    }
 }
 
 .member-card {
     background: var(--bg-card);
-    padding: 30px;
-    border-radius: 8px;
+    padding: 0;
+    border-radius: 12px;
     text-align: center;
-    transition: all 0.15s ease;
-    box-shadow: var(--shadow-sm);
+    transition: all 0.3s ease;
+    box-shadow: var(--shadow-md);
     border: 1px solid var(--border-color);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
 }
 
 .member-card:hover {
-    transform: translateY(-10px) scale(1.02);
+    transform: translateY(-10px);
     box-shadow: var(--shadow-lg);
 }
 
 .member-img {
-    width: 120px;
-    height: 120px;
-    margin: 0 auto 20px;
-    border-radius: 50%;
+    width: 100%;
+    height: 400px;
+    margin: 0;
+    border-radius: 0;
     overflow: hidden;
-    border: none;
-    box-shadow: var(--shadow-sm);
+    position: relative;
+    border-bottom: 1px solid var(--border-color);
 }
 
 .member-img img {
     width: 100%;
     height: 100%;
     object-fit: cover;
+    transition: opacity 0.5s ease;
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: 0;
+}
+
+.member-img img.active {
+    opacity: 1;
+    z-index: 1;
+}
+
+.member-slider-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(0, 0, 0, 0.5);
+    color: white;
+    border: none;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    cursor: pointer;
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    transition: background 0.3s ease;
+    opacity: 0;
+}
+
+.member-card:hover .member-slider-btn {
+    opacity: 1;
+}
+
+.member-slider-btn:hover {
+    background: rgba(0, 0, 0, 0.8);
+}
+
+.member-slider-prev {
+    left: 10px;
+}
+
+.member-slider-next {
+    right: 10px;
+}
+
+.member-info {
+    padding: 25px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 
 .member-info h3 {
