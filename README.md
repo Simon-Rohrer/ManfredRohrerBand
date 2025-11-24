@@ -13,7 +13,7 @@ python3 -m http.server 8000
 Dann im Browser öffnen: **http://localhost:8000**
 
 ## 🛑 Server beenden
-
+test
 **Einfachste Methode:** Drücke `Ctrl+C` im Terminal
 
 **Alternative:**
