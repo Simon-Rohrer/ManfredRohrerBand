@@ -1124,3 +1124,144 @@ footer {
         order: -1;
     }
 }
+
+/* =========================== */
+/*     RESPONSIVE NAVIGATION   */
+/* =========================== */
+
+@media (max-width: 900px) {
+    .nav-links {
+        position: fixed;
+        top: 70px;
+        right: -100%;
+        width: 70%;
+        height: calc(100vh - 70px);
+        background: #fff;
+        flex-direction: column;
+        gap: 20px;
+        padding: 40px;
+        box-shadow: -4px 0 10px rgba(0, 0, 0, 0.1);
+        transition: right 0.3s ease;
+        z-index: 999;
+    }
+
+    .nav-links.active {
+        right: 0;
+    }
+
+    .hamburger {
+        display: flex;
+    }
+}
+
+@media (max-width: 900px) {
+    .hero-content h1 {
+        font-size: 3.2rem;
+    }
+}
+
+@media (max-width: 600px) {
+    .hero-content h1 {
+        font-size: 2.2rem;
+    }
+
+    .hero-content p {
+        font-size: 1rem;
+    }
+}
+
+/* ABOUT */
+@media (max-width: 900px) {
+    .about-grid {
+        grid-template-columns: 1fr;
+        text-align: center;
+    }
+
+    .about-text h2 {
+        text-align: center;
+    }
+}
+
+/* MEMBERS */
+@media (max-width: 1200px) {
+    .member-card {
+        width: calc((100% - 40px) / 2);
+    }
+}
+
+@media (max-width: 700px) {
+    .member-card {
+        width: 100%;
+    }
+
+    .member-img {
+        height: 260px;
+    }
+}
+
+@media (max-width: 700px) {
+
+    .track {
+        padding: 15px;
+    }
+
+    .track-main {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 15px;
+    }
+
+    .waveform {
+        width: 100%;
+        margin: 10px 0;
+    }
+
+    .timeline {
+        flex-direction: column;
+        gap: 6px;
+        width: 100%;
+    }
+}
+
+@media (max-width: 600px) {
+    .gallery-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .gallery-item {
+        height: 220px;
+    }
+}
+
+@media (max-width: 800px) {
+    .video-container {
+        border-radius: 6px;
+    }
+}
+
+@media (max-width: 600px) {
+    .booking-form {
+        padding: 25px;
+    }
+}
+
+/* HEADINGS RESPONSIVE */
+@media (max-width: 900px) {
+    h1 {
+        font-size: 2.5rem;
+    }
+
+    h2 {
+        font-size: 2rem;
+    }
+}
+
+@media (max-width: 600px) {
+    h1 {
+        font-size: 2rem;
+    }
+
+    h2 {
+        font-size: 1.6rem;
+    }
+}
