@@ -673,17 +673,38 @@ img {
 }
 
 .gallery-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
     gap: 20px;
 }
 
 .gallery-item {
+    flex: 1 1 300px;
+    max-width: 500px;
     height: 300px;
     overflow: hidden;
     cursor: pointer;
     position: relative;
     border-radius: 8px;
+}
+
+/* Specific Layouts for 3 and 4 items (Desktop/Tablet) */
+@media (min-width: 601px) {
+
+    /* If exactly 3 items: 2 top, 1 bottom */
+    .gallery-item:first-child:nth-last-child(3),
+    .gallery-item:first-child:nth-last-child(3)~.gallery-item {
+        flex-basis: calc(50% - 20px);
+        max-width: calc(50% - 20px);
+    }
+
+    /* If exactly 4 items: 2 top, 2 bottom */
+    .gallery-item:first-child:nth-last-child(4),
+    .gallery-item:first-child:nth-last-child(4)~.gallery-item {
+        flex-basis: calc(50% - 20px);
+        max-width: calc(50% - 20px);
+    }
 }
 
 .gallery-item img {
@@ -864,43 +885,53 @@ img {
 .booking-form {
     background: var(--bg-card);
     padding: 40px;
-    border-radius: 8px;
+    border-radius: 12px;
     border: 1px solid var(--border-color);
-    box-shadow: var(--shadow-md);
+    box-shadow: var(--shadow-lg);
 }
 
 .form-group {
-    margin-bottom: 20px;
+    margin-bottom: 24px;
 }
 
 .form-group label {
     display: block;
-    margin-bottom: 8px;
-    font-weight: 600;
-    color: var(--text-main);
-    font-size: 0.9rem;
+    margin-bottom: 10px;
+    font-weight: 700;
+    color: var(--accent-secondary);
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
 }
 
 .form-group input,
 .form-group select,
 .form-group textarea {
     width: 100%;
-    padding: 12px;
-    background: #ffffff;
+    padding: 14px 16px;
+    background: #f8f9fa;
     border: 1px solid var(--border-color);
     color: var(--text-main);
-    border-radius: 4px;
+    border-radius: 6px;
     font-family: var(--font-body);
     font-size: 1rem;
     transition: var(--transition);
+}
+
+.form-group input:hover,
+.form-group select:hover,
+.form-group textarea:hover {
+    background: #ffffff;
+    border-color: #b2bec3;
 }
 
 .form-group input:focus,
 .form-group select:focus,
 .form-group textarea:focus {
     outline: none;
+    background: #ffffff;
     border-color: var(--accent-primary);
-    box-shadow: 0 0 0 3px rgba(45, 52, 54, 0.1);
+    box-shadow: 0 0 0 4px rgba(45, 52, 54, 0.1);
 }
 
 /* Date Input Styling */
@@ -913,7 +944,15 @@ img {
     font-weight: 400;
     letter-spacing: 0.3px;
     color: var(--text-main);
+    background: #f8f9fa;
+    border-radius: 6px;
+    transition: var(--transition);
+}
+
+.form-group input[type="date"]:hover,
+.form-group input[type="date"]:focus {
     background: #ffffff;
+    border-color: var(--accent-primary);
 }
 
 .form-group input[type="date"]::-webkit-calendar-picker-indicator {
