@@ -390,7 +390,7 @@ if (bookingForm) {
             event_date: document.getElementById('event-date').value,
             event_type: eventType,
             message: document.getElementById('message').value,
-            to_email: 'SImon.rohrer04@web.de'
+            to_email: 'Simon.rohrer04@web.de'
         };
 
         // 2. Visual Feedback - Loading
@@ -398,7 +398,7 @@ if (bookingForm) {
         submitBtn.disabled = true;
 
         // 3. Send Email via EmailJS
-        emailjs.send('service_9v57ieh', 'template_k0cb54w', templateParams)
+        emailjs.send('service_fqc1yq5', 'template_k0cb54w', templateParams)
             .then(() => {
                 // Success
                 submitBtn.textContent = 'ANFRAGE GESENDET! ✓';
