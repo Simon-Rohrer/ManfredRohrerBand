@@ -3,41 +3,51 @@
 const service_id = "service_cxgpf5t";
 const template_id = "template_k0cb54w";
 
+function initNavigation() {
+    const hamburger = document.querySelector('.hamburger');
+    const navLinks = document.querySelector('.nav-links');
+    const links = document.querySelectorAll('.nav-links li');
+
+    if (hamburger && navLinks && links.length > 0) {
+        // Remove existing listeners to prevent duplicates if called multiple times
+        const newHamburger = hamburger.cloneNode(true);
+        hamburger.parentNode.replaceChild(newHamburger, hamburger);
+
+        newHamburger.addEventListener('click', () => {
+            // Toggle Nav
+            navLinks.classList.toggle('open');
+
+            // Animate Links
+            links.forEach((link, index) => {
+                if (link.style.animation) {
+                    link.style.animation = '';
+                } else {
+                    link.style.animation = `navLinkFade 0.5s ease forwards ${index / 7 + 0.3}s`;
+                }
+            });
+            newHamburger.classList.toggle('toggle');
+        });
+
+        // Close nav when clicking a link
+        links.forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('open');
+                newHamburger.classList.remove('toggle');
+                links.forEach(link => {
+                    link.style.animation = '';
+                });
+            });
+        });
+    }
+}
+
+// Initialize navigation when DOM is ready OR when header is loaded
 document.addEventListener('DOMContentLoaded', () => {
-    // Small delay to ensure components are loaded
-    setTimeout(() => {
-        const hamburger = document.querySelector('.hamburger');
-        const navLinks = document.querySelector('.nav-links');
-        const links = document.querySelectorAll('.nav-links li');
+    initNavigation();
+});
 
-        if (hamburger && navLinks && links.length > 0) {
-            hamburger.addEventListener('click', () => {
-                // Toggle Nav
-                navLinks.classList.toggle('open');
-
-                // Animate Links
-                links.forEach((link, index) => {
-                    if (link.style.animation) {
-                        link.style.animation = '';
-                    } else {
-                        link.style.animation = `navLinkFade 0.5s ease forwards ${index / 7 + 0.3}s`;
-                    }
-                });
-                hamburger.classList.toggle('toggle');
-            });
-
-            // Close nav when clicking a link
-            links.forEach(link => {
-                link.addEventListener('click', () => {
-                    navLinks.classList.remove('open');
-                    hamburger.classList.remove('toggle');
-                    links.forEach(link => {
-                        link.style.animation = '';
-                    });
-                });
-            });
-        }
-    }, 100); // Small delay to ensure components are loaded
+document.addEventListener('headerLoaded', () => {
+    initNavigation();
 });
 
 // Audio Player
@@ -435,6 +445,17 @@ if (bookingForm) {
 document.addEventListener('DOMContentLoaded', () => {
     const prevBtns = document.querySelectorAll('.member-slider-prev');
     const nextBtns = document.querySelectorAll('.member-slider-next');
+
+    // Initialize sliders: Ensure first image is active if none are
+    document.querySelectorAll('.member-img').forEach(card => {
+        const images = card.querySelectorAll('img');
+        if (images.length > 0) {
+            const hasActive = Array.from(images).some(img => img.classList.contains('active'));
+            if (!hasActive) {
+                images[0].classList.add('active');
+            }
+        }
+    });
 
     function updateSlide(btn, direction) {
         const card = btn.closest('.member-img');

@@ -169,7 +169,7 @@ img {
 }
 
 .nav-links a {
-    font-size: 0.95rem;
+    font-size: 1.15rem;
     font-weight: 500;
     color: var(--text-main);
     position: relative;
@@ -569,6 +569,15 @@ img {
     background: #000000;
 }
 
+@media (max-width: 768px) {
+    .play-btn {
+        width: 50px;
+        height: 50px;
+        font-size: 1.2rem;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    }
+}
+
 .track-info {
     flex: 1;
 }
@@ -936,17 +945,20 @@ img {
 
 /* Date Input Styling */
 .form-group input[type="date"] {
-    padding: 16px 14px;
-    font-size: 1.05rem;
+    padding: 14px 16px;
+    font-size: 1rem;
     cursor: pointer;
     position: relative;
-    min-height: 56px;
     font-weight: 400;
     letter-spacing: 0.3px;
     color: var(--text-main);
     background: #f8f9fa;
     border-radius: 6px;
     transition: var(--transition);
+    appearance: none;
+    -webkit-appearance: none;
+    display: block;
+    width: 100%;
 }
 
 .form-group input[type="date"]:hover,
@@ -981,13 +993,13 @@ img {
 }
 
 .form-group input[type="date"]::-webkit-datetime-edit {
-    padding: 6px 4px;
-    font-size: 1.05rem;
+    padding: 0;
+    font-size: 1rem;
     font-weight: 400;
 }
 
 .form-group input[type="date"]::-webkit-datetime-edit-fields-wrapper {
-    padding: 6px 4px;
+    padding: 0;
 }
 
 .form-group input[type="date"]::-webkit-datetime-edit-text {

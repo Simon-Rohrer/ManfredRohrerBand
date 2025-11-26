@@ -16,14 +16,6 @@ find . -type f \( -iname "*.jpg" -o -iname "*.jpeg" -o -iname "*.png" \) -print0
   mv "$img-compressed" "$img"
 done
 
-echo "📁 Schritt 4: Dateien normal hinzufügen..."
-git add .
-
-echo "💾 Schritt 5: Commit..."
-git commit -m "Compressed images & removed Git LFS"
-
-echo "⬆ Schritt 6: Push..."
-git push
 
 echo "✅ Fertig! Bilder sind jetzt klein genug und funktionieren auf GitHub Pages."
 

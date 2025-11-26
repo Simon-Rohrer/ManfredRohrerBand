@@ -32,13 +32,4 @@ find . -type f \( -iname "*.mp4" -o -iname "*.mov" -o -iname "*.mkv" -o -iname "
   compress_video "$vid"
 done
 
-echo "📁 Schritt 2: Dateien normal hinzufügen..."
-git add .
-
-echo "💾 Schritt 3: Commit..."
-git commit -m "Compressed videos to fit GitHub size limit"
-
-echo "⬆ Schritt 4: Push..."
-git push
-
 echo "✅ Fertig! Alle Videos unter 45MB."

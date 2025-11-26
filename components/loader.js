@@ -8,6 +8,8 @@ document.addEventListener('DOMContentLoaded', function () {
             const headerPlaceholder = document.getElementById('header-placeholder');
             if (headerPlaceholder) {
                 headerPlaceholder.innerHTML = data;
+                // Dispatch event to signal header is loaded
+                document.dispatchEvent(new Event('headerLoaded'));
             }
         })
         .catch(error => console.error('Error loading header:', error));
