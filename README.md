@@ -1,48 +1,51 @@
-<!-- TODO ENTFERNE -->
 # Manfred Rohrer Band Website
 
 Moderne, responsive Website für die Manfred Rohrer Band mit Hero-Slider, Band-Mitgliedern, Audio-Player, Galerie und Booking-Formular.
 
-## 🚀 Lokalen Server starten
+## 🚀 Projekt Starten
 
+### Entwicklung (Lokal)
+
+1.  Öffne das Projekt in VS Code.
+2.  Drücke **F5** (oder starte "Run and Debug").
+3.  Der Browser öffnet sich automatisch unter: **http://localhost:8000**
+
+Alternativ über Terminal:
 ```bash
-cd /Users/simonrohrer/gemini
+cd src/frontend
 python3 -m http.server 8000
 ```
 
-Dann im Browser öffnen: **http://localhost:8000**
+### Veröffentlichung (Deployment)
 
-## 🛑 Server beenden
-
-**Einfachste Methode:** Drücke `control+C` im Terminal
-
-**Alternative:**
-```bash
-# Prozess finden
-lsof -i :8000
-
-test neue Version
-# Prozess beenden (ersetze 27671 mit der angezeigten PID)
-kill -9 27671
-```
+Der Ordner `src/frontend` ist deine fertige Webseite.
+Lade den **Inhalt** dieses Ordners auf deinen Webserver oder GitHub Pages hoch.
 
 ## 📁 Projektstruktur
 
+Das Projekt ist in Frontend und Backend unterteilt, wobei aktuell der Fokus auf dem Frontend liegt.
+
 ```
-gemini/
-├── index.html              # Hauptseite
-├── impressum.html          # Impressum
-├── datenschutz.html        # Datenschutzerklärung
-├── style.css               # Styling
-├── main.js                 # JavaScript Funktionalität
-├── components/             # Wiederverwendbare Komponenten
-│   ├── header.html         # Navigation
-│   ├── footer.html         # Footer
-│   └── loader.js           # Komponenten-Loader
-└── assets/                 # Bilder & Audio
-    ├── Band_gesamt/
-    ├── Bandmitglieder/
-    └── audio/
+manfredrohrerband/
+├── src/
+│   ├── frontend/              # Hauptordner der Webseite
+│   │   ├── index.html         # Startseite
+│   │   ├── impressum.html     # Impressum
+│   │   ├── datenschutz.html   # Datenschutz
+│   │   ├── assets/            # Medien (Bilder, Audio, Video)
+│   │   │   ├── images/
+│   │   │   │   ├── bandPhotos/  # Bandfotos
+│   │   │   │   ├── members/     # Mitgliederfotos
+│   │   │   │   └── logo/        # Logos
+│   │   │   ├── audio/         # MP3 Dateien
+│   │   │   └── video/         # Videodateien
+│   │   ├── components/        # Wiederverwendbare HTML-Teile
+│   │   │   ├── header.html    # Navigation
+│   │   │   └── footer.html    # Footer
+│   │   ├── styles/            # CSS Stylesheets
+│   │   └── scripts/           # JavaScript Logik
+│   └── backend/               # Platzhalter für Backend-Logik
+└── README.md                  # Diese Datei
 ```
 
 ## ✨ Features
@@ -50,29 +53,23 @@ gemini/
 - **Hero Slider** - Automatischer Bildwechsel mit manueller Steuerung
 - **Band Members** - 8 Mitglieder mit Fotos und Beschreibungen
 - **Audio Player** - Integrierter Player für 3 Songs
-- **Galerie** - Lightbox-Galerie mit 6 Bildern
+- **Galerie** - Lightbox-Galerie
 - **Booking Form** - Kontaktformular mit Event-Typen
 - **Responsive Design** - Optimiert für Desktop & Mobile
 
 ## 🔧 Komponenten-System
 
 Header und Footer werden dynamisch geladen:
-- Änderungen in `components/header.html` oder `components/footer.html` erscheinen automatisch auf allen Seiten
-- Keine Code-Duplikation mehr
+- Änderungen in `src/frontend/components/header.html` oder `footer.html` erscheinen automatisch auf allen Seiten.
+- Keine Code-Duplikation.
 
 ## 📝 Inhalte anpassen
 
-- **Bilder:** Ersetze Dateien in `assets/`
-- **Audio:** Ersetze MP3-Dateien in `assets/audio/`
-- **Texte:** Bearbeite die HTML-Dateien direkt
-- **Styling:** Passe `style.css` an
-
-## 🌐 Seiten
-
-- **Hauptseite:** http://localhost:8000
-- **Impressum:** http://localhost:8000/impressum.html
-- **Datenschutz:** http://localhost:8000/datenschutz.html
+- **Bilder:** Dateien in `src/frontend/assets/images/` austauschen.
+- **Audio:** MP3-Dateien in `src/frontend/assets/audio/` ersetzen.
+- **Texte:** HTML-Dateien in `src/frontend/` bearbeiten.
+- **Styling:** `src/frontend/styles/style.css` anpassen.
 
 ---
 
-**Tipp:** Nach Änderungen im Code einfach die Seite im Browser neu laden (F5 / Cmd+R)
+**Tipp:** Nach Änderungen im Code einfach die Seite im Browser neu laden (F5 / Cmd+R).
