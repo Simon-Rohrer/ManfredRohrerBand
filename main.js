@@ -1,5 +1,8 @@
 //TODO ENTFERNE
 // Navigation - Wait for DOM to be ready (including dynamically loaded header)
+const service_id = "service_cxgpf5t";
+const template_id = "template_k0cb54w";
+
 document.addEventListener('DOMContentLoaded', () => {
     // Small delay to ensure components are loaded
     setTimeout(() => {
@@ -20,10 +23,6 @@ document.addEventListener('DOMContentLoaded', () => {
                         link.style.animation = `navLinkFade 0.5s ease forwards ${index / 7 + 0.3}s`;
                     }
                 });
-
-                // Hamburger Animation
-                //Test
-
                 hamburger.classList.toggle('toggle');
             });
 
@@ -194,8 +193,6 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     }
-
-    // Glitch Effect Removed
 
     // Hero Slideshow
     const slides = document.querySelectorAll('.hero-bg .slide');
@@ -398,7 +395,7 @@ if (bookingForm) {
         submitBtn.disabled = true;
 
         // 3. Send Email via EmailJS
-        emailjs.send('service_fqc1yq5', 'template_k0cb54w', templateParams)
+        emailjs.send(service_id, template_id, templateParams)
             .then(() => {
                 // Success
                 submitBtn.textContent = 'ANFRAGE GESENDET! ✓';
@@ -434,7 +431,6 @@ if (bookingForm) {
             });
     });
 }
-// Member Slider Logic
 // Member Slider Logic
 document.addEventListener('DOMContentLoaded', () => {
     const prevBtns = document.querySelectorAll('.member-slider-prev');
