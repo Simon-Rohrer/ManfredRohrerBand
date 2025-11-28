@@ -344,6 +344,7 @@ img {
     font-size: 6rem;
     margin-bottom: 1rem;
     letter-spacing: -1px;
+    text-shadow: none;
 }
 
 .hero-content .cta-btn {
@@ -445,6 +446,7 @@ img {
     font-size: 2rem;
     color: var(--accent-primary);
     margin-bottom: 0.5rem;
+    font-weight: 700;
 }
 
 .genre-slide p {
