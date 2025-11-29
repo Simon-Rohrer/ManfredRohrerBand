@@ -11,8 +11,8 @@
     --accent-secondary: #636e72;
     /* Grey */
     --border-color: #e0e0e0;
-    --font-heading: 'Outfit', sans-serif;
-    --font-body: 'Inter', sans-serif;
+    --font-heading: 'Italiana', serif;
+    --font-body: 'Quicksand', sans-serif;
     --transition: all 0.3s ease;
     --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.05);
     --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.07);
@@ -93,6 +93,7 @@ img {
     padding: 12px 30px;
     background-color: var(--accent-primary);
     color: #ffffff;
+    margin-top: 10px;
     font-family: var(--font-body);
     font-weight: 600;
     font-size: 1rem;
@@ -343,11 +344,7 @@ img {
     font-size: 6rem;
     margin-bottom: 1rem;
     letter-spacing: -1px;
-    text-shadow: 0 4px 12px rgba(0, 0, 0, 0.6), 0 2px 4px rgba(0, 0, 0, 0.4);
-}
-
-.hero-content p {
-    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.6), 0 1px 3px rgba(0, 0, 0, 0.4);
+    text-shadow: none;
 }
 
 .hero-content .cta-btn {
@@ -393,6 +390,117 @@ img {
     font-size: 1.1rem;
     color: var(--text-muted);
 }
+
+
+/* Genre Slider Section */
+.genres {
+    background-color: var(--bg-section);
+    text-align: center;
+}
+
+.genre-slider-wrapper {
+    position: relative;
+    max-width: 800px;
+    margin: 0 auto;
+    overflow: hidden;
+    padding: 40px 20px;
+    background: var(--bg-card);
+    border-radius: 12px;
+    box-shadow: var(--shadow-md);
+    border: 1px solid var(--border-color);
+}
+
+.genre-slide {
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+}
+
+.genre-slide.active {
+    display: flex;
+    opacity: 1;
+    animation: fadeIn 0.5s ease-in-out;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.genre-icon {
+    font-size: 4rem;
+    margin-bottom: 10px;
+}
+
+.genre-slide h3 {
+    font-size: 2rem;
+    color: var(--accent-primary);
+    margin-bottom: 0.5rem;
+    font-weight: 700;
+}
+
+.genre-slide p {
+    font-size: 1.1rem;
+    color: var(--text-muted);
+    max-width: 600px;
+    line-height: 1.8;
+}
+
+.genre-prev,
+.genre-next {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    font-size: 2rem;
+    color: var(--accent-primary);
+    cursor: pointer;
+    padding: 10px;
+    transition: var(--transition);
+    z-index: 10;
+}
+
+.genre-prev:hover,
+.genre-next:hover {
+    color: var(--text-main);
+    transform: translateY(-50%) scale(1.1);
+}
+
+.genre-prev {
+    left: 10px;
+}
+
+.genre-next {
+    right: 10px;
+}
+
+.genre-dots {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 30px;
+}
+
+/* Reuse existing dot styles but ensure they work here */
+.genre-dots .dot {
+    background-color: var(--border-color);
+}
+
+.genre-dots .dot.active {
+    background-color: var(--accent-primary);
+}
+
 
 /* Members Section */
 .members {
@@ -844,9 +952,28 @@ img {
     background-color: var(--bg-body);
 }
 
-.video-container {
+.video-slider-wrapper {
+    position: relative;
     max-width: 900px;
     margin: 0 auto;
+    overflow: hidden;
+}
+
+.video-slide {
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+}
+
+.video-slide.active {
+    display: flex;
+    opacity: 1;
+}
+
+.video-container {
+    width: 100%;
     border-radius: 12px;
     overflow: hidden;
     box-shadow: var(--shadow-lg);
@@ -874,6 +1001,60 @@ img {
     font-size: 1rem;
     color: var(--text-muted);
     font-style: italic;
+}
+
+.video-prev,
+.video-next {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(0, 0, 0, 0.6);
+    border: none;
+    color: #ffffff;
+    font-size: 2rem;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: var(--transition);
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.video-prev:hover,
+.video-next:hover {
+    background: var(--accent-primary);
+}
+
+.video-prev {
+    left: 20px;
+}
+
+.video-next {
+    right: 20px;
+}
+
+.video-dots {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    margin-top: 30px;
+}
+
+.video-dots .dot {
+    width: 12px;
+    height: 12px;
+    background-color: var(--border-color);
+    border-radius: 50%;
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.video-dots .dot.active {
+    background-color: var(--accent-primary);
+    transform: scale(1.2);
 }
 
 /* Contact Section */
@@ -1113,7 +1294,7 @@ footer {
         right: 0;
         top: 71px;
         width: 45%;
-        height: 75vh;
+        height: auto;
         padding: 10px;
         padding-top: 50px;
         padding-bottom: 50px;

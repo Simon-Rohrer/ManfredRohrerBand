@@ -255,13 +255,22 @@ function togglePlay(btn) {
 
 // WIEDERHERGESTELLT: Zielt auf das Progress-Bar-Element ab
 function seekTo(event, progressBarElement) {
-    if (!currentAudio || isNaN(currentAudio.duration)) return;
+    console.log('seekTo called');
+    console.log('currentAudio:', currentAudio);
+    console.log('currentAudio.duration:', currentAudio?.duration);
+    console.log('isNaN(currentAudio.duration):', isNaN(currentAudio?.duration));
+
+    if (!currentAudio || isNaN(currentAudio.duration)) {
+        console.log('Exiting seekTo: no audio or invalid duration');
+        return;
+    }
 
     const rect = progressBarElement.getBoundingClientRect();
     const clickX = event.clientX - rect.left;
     const percentage = clickX / rect.width;
     const newTime = percentage * currentAudio.duration;
 
+    console.log('Seeking to:', newTime, 'seconds');
     currentAudio.currentTime = newTime;
     updateTimeline(currentTrack, currentAudio);
 }
@@ -312,10 +321,17 @@ document.addEventListener('DOMContentLoaded', () => {
             togglePlay(playBtn);
         }
 
-        // WIEDERHERGESTELLT: Event-Delegation für Seeking auf dem Progress-Bar-Element
+        // Event-Delegation für Seeking auf dem Progress-Bar-Element
         const progressBar = e.target.closest('.progress-bar');
-        if (progressBar) {
-            if (currentTrack && progressBar.closest('.track') === currentTrack) {
+        if (progressBar && currentTrack && currentAudio) {
+            // Only allow seeking if there's an active track
+            const clickedTrack = progressBar.closest('.track');
+            const trackTitle = clickedTrack?.querySelector('.track-title')?.textContent;
+            console.log('Clicked track:', trackTitle);
+            console.log('Current track title:', currentTrack?.querySelector('.track-title')?.textContent);
+            console.log('Are they the same element?', clickedTrack === currentTrack);
+
+            if (clickedTrack === currentTrack) {
                 seekTo(e, progressBar);
             }
         }
@@ -652,4 +668,112 @@ document.addEventListener('DOMContentLoaded', () => {
             updateSlide(btn, 'next');
         });
     });
+});
+
+
+// Genre Slider Logic
+document.addEventListener('DOMContentLoaded', () => {
+    const genreSlides = document.querySelectorAll('.genre-slide');
+    const genrePrev = document.querySelector('.genre-prev');
+    const genreNext = document.querySelector('.genre-next');
+    const genreDotsContainer = document.querySelector('.genre-dots');
+    let currentGenreIndex = 0;
+
+    if (genreSlides.length > 0 && genreDotsContainer && genrePrev && genreNext) {
+        // Create dots
+        genreDotsContainer.innerHTML = '';
+        genreSlides.forEach((_, index) => {
+            const dot = document.createElement('div');
+            dot.classList.add('dot'); // Reusing existing dot class
+            if (index === 0) dot.classList.add('active');
+            dot.addEventListener('click', () => goToGenreSlide(index));
+            genreDotsContainer.appendChild(dot);
+        });
+
+        const genreDots = genreDotsContainer.querySelectorAll('.dot');
+
+        function goToGenreSlide(index) {
+            if (index === currentGenreIndex) return;
+
+            // Remove active class from current
+            genreSlides[currentGenreIndex].classList.remove('active');
+            genreDots[currentGenreIndex].classList.remove('active');
+
+            // Add active class to new
+            genreSlides[index].classList.add('active');
+            genreDots[index].classList.add('active');
+
+            currentGenreIndex = index;
+        }
+
+        function nextGenreSlide() {
+            const newIndex = (currentGenreIndex + 1) % genreSlides.length;
+            goToGenreSlide(newIndex);
+        }
+
+        function prevGenreSlide() {
+            const newIndex = (currentGenreIndex - 1 + genreSlides.length) % genreSlides.length;
+            goToGenreSlide(newIndex);
+        }
+
+        // Event Listeners
+        genreNext.addEventListener('click', nextGenreSlide);
+        genrePrev.addEventListener('click', prevGenreSlide);
+    }
+});
+
+
+// Video Slider Logic
+document.addEventListener('DOMContentLoaded', () => {
+    const videoSlides = document.querySelectorAll('.video-slide');
+    const videoPrev = document.querySelector('.video-prev');
+    const videoNext = document.querySelector('.video-next');
+    const videoDotsContainer = document.querySelector('.video-dots');
+    let currentVideoIndex = 0;
+
+    if (videoSlides.length > 0 && videoDotsContainer && videoPrev && videoNext) {
+        // Create dots
+        videoDotsContainer.innerHTML = '';
+        videoSlides.forEach((_, index) => {
+            const dot = document.createElement('div');
+            dot.classList.add('dot');
+            if (index === 0) dot.classList.add('active');
+            dot.addEventListener('click', () => goToVideoSlide(index));
+            videoDotsContainer.appendChild(dot);
+        });
+
+        const videoDots = videoDotsContainer.querySelectorAll('.dot');
+
+        function goToVideoSlide(index) {
+            if (index === currentVideoIndex) return;
+
+            // Pause current video
+            const currentVideo = videoSlides[currentVideoIndex].querySelector('video');
+            if (currentVideo) currentVideo.pause();
+
+            // Remove active class from current
+            videoSlides[currentVideoIndex].classList.remove('active');
+            videoDots[currentVideoIndex].classList.remove('active');
+
+            // Add active class to new
+            videoSlides[index].classList.add('active');
+            videoDots[index].classList.add('active');
+
+            currentVideoIndex = index;
+        }
+
+        function nextVideoSlide() {
+            const newIndex = (currentVideoIndex + 1) % videoSlides.length;
+            goToVideoSlide(newIndex);
+        }
+
+        function prevVideoSlide() {
+            const newIndex = (currentVideoIndex - 1 + videoSlides.length) % videoSlides.length;
+            goToVideoSlide(newIndex);
+        }
+
+        // Event Listeners
+        videoNext.addEventListener('click', nextVideoSlide);
+        videoPrev.addEventListener('click', prevVideoSlide);
+    }
 });
