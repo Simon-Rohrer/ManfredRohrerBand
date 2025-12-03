@@ -10,16 +10,7 @@ Moderne, responsive Website für die Manfred Rohrer Band mit Hero-Slider, Band-M
 2.  Drücke **F5** (oder starte "Run and Debug").
 3.  Der Browser öffnet sich automatisch unter: **http://localhost:8000**
 
-Alternativ über Terminal:
-```bash
-cd src/frontend
-python3 -m http.server 8000
-```
 
-### Veröffentlichung (Deployment)
-
-Der gesamte Projektordner ist deine fertige Webseite.
-Lade den **Inhalt** dieses Ordners auf deinen Webserver oder GitHub Pages hoch.
 
 ## 📁 Projektstruktur
 
@@ -54,19 +45,4 @@ manfredrohrerband/
 - **Booking Form** - Kontaktformular mit Event-Typen
 - **Responsive Design** - Optimiert für Desktop & Mobile
 
-## 🔧 Komponenten-System
 
-Header und Footer werden dynamisch geladen:
-- Änderungen in `src/frontend/components/header.html` oder `footer.html` erscheinen automatisch auf allen Seiten.
-- Keine Code-Duplikation.
-
-## 📝 Inhalte anpassen
-
-- **Bilder:** Dateien in `src/frontend/assets/images/` austauschen.
-- **Audio:** MP3-Dateien in `src/frontend/assets/audio/` ersetzen.
-- **Texte:** HTML-Dateien in `src/frontend/` bearbeiten.
-- **Styling:** `src/frontend/styles/style.css` anpassen.
-
----
-
-**Tipp:** Nach Änderungen im Code einfach die Seite im Browser neu laden (F5 / Cmd+R).
